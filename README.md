@@ -9,13 +9,19 @@ Implemented and debugged with OpenAI Codex assistance, with project direction an
 1. Download **SignalRGBProxyInstaller-v0.1.1-win-x64.exe** from [Release v0.1.1](https://github.com/pxlfall/vibecoded-signalrgb-proxy-integration/releases/tag/v0.1.1).
 2. Start Clash with an unauthenticated SOCKS5/mixed listener at **127.0.0.1:7897**, or use your own numeric IPv4 address and port.
 3. Run the installer as your normal Windows user and approve its administrator prompt. Select your **VortxEngine** folder; the default is `%LOCALAPPDATA%\VortxEngine`. The installer stops SignalRGB processes in that folder.
-4. Select the proxy address/port and finish setup. Launch **Start SignalRGB** from the Start menu, or update your existing elevated startup task as below.
+4. Select the proxy address/port and finish setup. You can launch the official **SignalRgbLauncher.exe** directly. The optional **Start SignalRGB** entry also checks proxy readiness and reapplies the package to existing app folders.
 
 This release contains x64 DLLs. It was tested with SignalRGB 2.5.78 on Windows 11 ARM in Parallels running the x64 application under emulation. Native ARM64 SignalRGB binaries are unsupported. The installer is unsigned.
 
 Setup defaults to `C:\Program Files\SignalRGBProxy`. `proxy.txt` in that folder is the configuration source; the wrapper copies it into SignalRGB on each launch. If you change settings, edit the file as administrator, quit SignalRGB, and launch the wrapper again.
 
-## Your existing elevated startup task
+## Direct launch and your existing elevated startup task
+
+Once installed, opening `VortxEngine\SignalRgbLauncher.exe` automatically loads the proxy patch when it starts `SignalRgb.exe`. The app-local `DWrite.dll` loader reads `proxy.txt` beside the application and loads `force-proxy.dll`; no wrapper or preconfigured environment is needed. This direct launch was tested in the VM, including the official executable opened from File Explorer. Clash must already be ready. The launcher/updater process itself is not patched.
+
+Your existing elevated task can keep pointing at the official launcher. Keep your account, **Run with highest privileges**, and **Run only when user is logged on**. Direct launch does not copy later changes from the package's `proxy.txt`: edit the app-local file, or run the wrapper once after changing the package settings. A SignalRGB update that creates a new `app-*` folder requires reapplying the patch; automatic coverage of those new folders is not implemented.
+
+For the optional readiness/update wrapper:
 
 The installer writes **task-action.txt** in its installation folder with the exact action to copy. Keep your account, **Run with highest privileges**, and **Run only when user is logged on**. It does not change existing tasks or create a duplicate.
 

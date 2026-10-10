@@ -22,6 +22,10 @@ A local fake SOCKS server sent greetings, domain-address CONNECT replies, and ap
 
 The PowerShell management script was tested for backup/restoration of an original DLL, removal of newly added patch files, reinstall, and refusal to launch when SOCKS5 was unavailable. An elevated interactive scheduled task returned 0 and SignalRGB recorded Admin Status: True. The temporary task was removed after testing.
 
+## Direct official launcher
+
+After installing v0.1.1, an elevated interactive task executed only the original `VortxEngine\SignalRgbLauncher.exe`, with no wrapper or proxy environment supplied. It returned 0; the app reached Running and its loaded module list contained the app-local `DWrite.dll` and `force-proxy.dll`. Clash TUN was off and its controller attributed nonzero SOCKS5 transfers for catalog, services, assets, and marketplace hosts to `SignalRgb.exe`. The official launcher was also opened from its original folder in File Explorer, and marketplace artwork rendered. The temporary direct-launch validation task was removed. This establishes direct launch for the patched 2.5.78 app folder, not update survival or proxying of the launcher/updater itself.
+
 ## Executable installer
 
 Inno Setup 6.7.3 compiled the installer. Isolated install/uninstall tests verified the embedded payload hashes, a custom SignalRGB root containing Unicode characters, the selected proxy port, generation of the exact task action, refusal to launch when SOCKS5 was absent, restoration of an existing original DLL, removal of newly added files, and successful reinstall/uninstall. The fixture contained dummy application files; those checks do not establish physical hardware behavior.
