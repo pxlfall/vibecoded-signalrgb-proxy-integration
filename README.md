@@ -15,23 +15,47 @@ This release contains x64 DLLs. It was tested with SignalRGB 2.5.78 on Windows 1
 
 Setup defaults to `C:\Program Files\SignalRGBProxy`. `proxy.txt` in that folder is the configuration source; the wrapper copies it into SignalRGB on each launch. If you change settings, edit the file as administrator, quit SignalRGB, and launch the wrapper again.
 
-## Direct launch and your existing elevated startup task
+## Launch SignalRGB directly
 
-Once installed, opening `VortxEngine\SignalRgbLauncher.exe` automatically loads the proxy patch when it starts `SignalRgb.exe`. The app-local `DWrite.dll` loader reads `proxy.txt` beside the application and loads `force-proxy.dll`; no wrapper or preconfigured environment is needed. This direct launch was tested in the VM, including the official executable opened from File Explorer. Clash must already be ready. The launcher/updater process itself is not patched.
+After installation, opening `VortxEngine\SignalRgbLauncher.exe` starts SignalRGB with the proxy already applied. Clash must already be ready. The launcher/updater itself is not proxied.
 
-Your existing elevated task can keep pointing at the official launcher. Keep your account, **Run with highest privileges**, and **Run only when user is logged on**. Direct launch does not copy later changes from the package's `proxy.txt`: edit the app-local file, or run the wrapper once after changing the package settings. A SignalRGB update that creates a new `app-*` folder requires reapplying the patch; automatic coverage of those new folders is not implemented.
+To change proxy settings, edit the installed package's `proxy.txt`, quit SignalRGB, and run **Start SignalRGB** once to apply them. After a SignalRGB update creates a new app folder, run **Start SignalRGB** again to reapply the patch.
 
-For the optional readiness/update wrapper:
+## How to auto-run SignalRGB with administrator privileges
 
-The installer writes **task-action.txt** in its installation folder with the exact action to copy. Keep your account, **Run with highest privileges**, and **Run only when user is logged on**. It does not change existing tasks or create a duplicate.
+The installer does not create a scheduled task. To start SignalRGB automatically when you sign in:
 
-Use `powershell.exe` with arguments (replace the path with your chosen installer folder):
+1. Open **Task Scheduler** from the Windows Start menu and select **Create Task**.
+2. On **General**, name it **SignalRGB Proxy Startup**, select your Windows account, choose **Run only when user is logged on**, and enable **Run with highest privileges**.
+3. On **Triggers**, select **New**, choose **At log on** for your account, and leave the trigger enabled.
+4. On **Actions**, select **New** and choose **Start a program**. Fill in the fields below.
+
+**Program/script:**
+
+```text
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+```
+
+**Add arguments:**
 
 ```text
 -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\Program Files\SignalRGBProxy\SignalRGBProxy.ps1" -Action Start
 ```
 
-You can remove the fixed 30-second delay. The wrapper waits up to 90 seconds for a successful local SOCKS5 handshake, then launches the official `SignalRgbLauncher.exe` with the task's privileges. Add `-WaitSeconds 180` to allow longer. Listener readiness does not guarantee upstream internet connectivity.
+**Start in:**
+
+```text
+C:\Program Files\SignalRGBProxy
+```
+
+If you installed the package elsewhere, use that folder in **Add arguments** and **Start in**. The installer also saves these details in `task-action.txt` in its installation folder.
+
+5. On laptops, open **Conditions** and clear **Start the task only if the computer is on AC power** if you want it to start on battery too.
+6. Save the task. Right-click it and choose **Run** to check that SignalRGB opens.
+
+This task runs the wrapper, which reapplies the patch to existing app folders and starts the official launcher with administrator privileges. If Clash is ready, it proceeds immediately. Otherwise, it retries the local SOCKS5 check once per second for up to about 90 seconds. No fixed startup delay is needed. Clash should also start when you sign in.
+
+If SignalRGB's separate automatic startup is enabled, disable it so this task controls startup.
 
 ## Uninstall and updates
 
@@ -47,15 +71,13 @@ The patch backs up `DWrite.dll`, `force-proxy.dll`, and `proxy.txt` in `signalrg
 - Keeps loopback, private LAN traffic, and UDP device discovery direct.
 - Checks proxy readiness and preserves original files for rollback.
 
-Clash's sniffer recovered domains such as `catalog.signalrgb.com` and `services.signalrgb.com`; `metadata.sniffHost` can contain the name even when the Connections table's Host column still displays an IP. See [Mihomo's sniffer documentation](https://wiki.metacubex.one/en/config/sniff/). This installer does not change your Clash profile or TUN setting.
-
 Logs: `%LOCALAPPDATA%\SignalRGBProxy\launcher.log` and `dns.log`. Set `SOCKS5_DNS_LOG=0` in the installed package's `proxy.txt` to disable domain diagnostics. No global system proxy or global environment variables are changed.
 
 ## Validation and limits
 
 v0.1 had a marketplace regression: catalog text loaded while artwork failed because the embedded browser still connected directly. **v0.1.1 fixes that path.** The VM now renders marketplace artwork, and Clash attributes `imagedelivery.net` SOCKS5 transfers to `SignalRgb.exe` with TUN disabled.
 
-The VM showed process-attributed **SignalRgb.exe → Socks5 → 127.0.0.1:7897**, recovered domains, nonzero transfer counters, successful catalog downloads, and **Running** with Clash TUN disabled. The corrected native build stayed free of recorded crashes during an observation exceeding three minutes. See [validation notes](docs/VALIDATION.md).
+The VM showed process-attributed **SignalRgb.exe → Socks5 → 127.0.0.1:7897**, nonzero transfer counters, successful catalog downloads, and **Running** with Clash TUN disabled. The corrected native build stayed free of recorded crashes during an observation exceeding three minutes. See [validation notes](docs/VALIDATION.md).
 
 An earlier unpatched run reached Booting after about 39 seconds with a cloud error. The first adapted run fetched fresh cloud configuration in about 10 seconds. Final cached network stage: about 6 seconds. Final total app startup: about 64 seconds including addons. These are different measurements; this is not a claim that the whole app starts in 6 seconds.
 
