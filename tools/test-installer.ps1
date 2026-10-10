@@ -11,7 +11,7 @@ Set-Content "$root\SignalRgbLauncher.exe" 'fixture'
 Set-Content "$app\SignalRgb.exe" 'fixture'
 Set-Content "$app\DWrite.dll" 'original fixture DLL'
 $original=(Get-FileHash "$app\DWrite.dll").Hash
-$installer="$workspace\release\SignalRGBProxyInstaller-v0.1-win-x64.exe"
+$installer="$workspace\release\SignalRGBProxyInstaller-v0.1.1-win-x64.exe"
 $arguments=@('/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART',"/DIR=`"$package`"","/SIGNALROOT=`"$root`"",'/PROXYADDRESS=127.0.0.1','/PROXYPORT=17897',"/LOG=`"$test\install.log`"")
 $p=Start-Process $installer -ArgumentList $arguments -Wait -PassThru
 if ($p.ExitCode) { throw "Installer failed: $($p.ExitCode), log: $test\install.log" }

@@ -1,4 +1,4 @@
-# Build v0.1
+# Build v0.1.1
 
 Use Windows with Visual Studio 2022 C++/MASM tools, a Windows SDK, CMake 3.24+, Python 3, vcpkg, and Inno Setup 6.7.3. See the [official Inno Setup download](https://jrsoftware.org/isdl.php). The pinned vcpkg baseline installs Detours and libcurl with Windows SSL using the static x64 triplet.
 
@@ -12,7 +12,7 @@ Run from a Visual Studio developer shell. Supply `-CMake` or `-InnoCompiler` if 
 
 - `build\payload\Release\DWrite.dll` and `force-proxy.dll`
 - `payload\` copies for installer packaging (ignored by Git)
-- `release\SignalRGBProxyInstaller-v0.1-win-x64.exe`
+- `release\SignalRGBProxyInstaller-v0.1.1-win-x64.exe`
 
 To compile the installer only from an already built payload:
 

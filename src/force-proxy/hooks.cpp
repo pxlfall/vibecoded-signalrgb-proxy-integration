@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "qt_proxy.h"
 
 bool IsChromiumNetworkThread() {
     // Qt WebEngine has its own SOCKS proxy. Do not replace Chromium's native
@@ -359,6 +360,7 @@ void InitHooks()
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 	AttachDnsHooks();
+	AttachQtProxyHooks();
 	DetourAttach((PVOID*)(&Real_WSAEventSelect), Mine_WSAEventSelect);
 	DetourAttach((PVOID*)(&Real_ioctlsocket), Mine_ioctlsocket);
 	DetourAttach((PVOID*)(&Real_connect), Mine_connect);
@@ -377,6 +379,7 @@ void DestroyHooks()
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 	DetachDnsHooks();
+	DetachQtProxyHooks();
 	DetourDetach((PVOID*)(&Real_WSAEventSelect), Mine_WSAEventSelect);
 	DetourDetach((PVOID*)(&Real_ioctlsocket), Mine_ioctlsocket);
 	DetourDetach((PVOID*)(&Real_connect), Mine_connect);

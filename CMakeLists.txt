@@ -7,7 +7,7 @@ find_package(CURL CONFIG REQUIRED)
 find_path(DETOURS_INCLUDE_DIR detours/detours.h REQUIRED)
 find_library(SIGNAL_DETOURS_LIBRARY detours PATHS "${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib" NO_DEFAULT_PATH REQUIRED)
 add_library(force-proxy SHARED src/force-proxy/dllmain.cpp src/force-proxy/hooks.cpp
-  src/force-proxy/proxy.cpp src/force-proxy/dns_hooks.cpp src/force-proxy/dns_wire.cpp)
+  src/force-proxy/proxy.cpp src/force-proxy/dns_hooks.cpp src/force-proxy/dns_wire.cpp src/force-proxy/qt_proxy.cpp)
 target_include_directories(force-proxy PRIVATE "${DETOURS_INCLUDE_DIR}")
 target_link_libraries(force-proxy PRIVATE CURL::libcurl "${SIGNAL_DETOURS_LIBRARY}" ws2_32 normaliz)
 add_library(DWrite SHARED src/loader.cpp src/proxy.asm)

@@ -1,4 +1,4 @@
-#define AppVersion "0.1"
+#define AppVersion "0.1.1"
 #define ProjectURL "https://github.com/pxlfall/vibecoded-signalrgb-proxy-integration"
 
 [Setup]
@@ -16,7 +16,7 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 MinVersion=10.0
 OutputDir=..\release
-OutputBaseFilename=SignalRGBProxyInstaller-v0.1-win-x64
+OutputBaseFilename=SignalRGBProxyInstaller-v0.1.1-win-x64
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern

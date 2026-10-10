@@ -14,7 +14,7 @@ See the upstream [force-proxy contributors](https://github.com/runetfreedom/forc
 
 **pxlfall** provided project direction, the Clash/SignalRGB use case, and the Windows/Parallels test environment. **OpenAI Codex** assisted with implementation and debugging. This is explicitly a vibecoded personal experiment.
 
-SignalRGB-specific changes include a loader without Discord command-line/update hooks; Qt WebEngine proxy settings; native WSAConnect and dual-stack handling; complete SOCKS response framing; Chromium network-thread isolation; direct LAN/device discovery; the readiness/backup/restore wrapper; and this Inno Setup installer. Neither physical-PC compatibility nor long-term stability is established by the VM tests.
+SignalRGB-specific changes include a loader without Discord command-line/update hooks; caller-scoped Qt WebEngine proxy queries using the application's exported Qt functions; native WSAConnect and dual-stack handling; complete SOCKS response framing; Chromium network-thread isolation; direct LAN/device discovery; the readiness/backup/restore wrapper; and this Inno Setup installer. Neither physical-PC compatibility nor long-term stability is established by the VM tests.
 
 ## Dependencies and build tools
 
@@ -25,6 +25,10 @@ SignalRGB-specific changes include a loader without Discord command-line/update 
 - **[Inno Setup](https://jrsoftware.org/)**, **Jordan Russell**, **Martijn Laan**, **Alex Yackimoff** (preprocessor), and contributors — executable installer and uninstaller; its distribution license is included in `licenses/dependencies/inno-setup.txt`. Thanks also to **Igor Pavlov** and the 7-Zip/LZMA contributors for the compression technology used by Inno Setup.
 - **[CMake](https://cmake.org/)**, Kitware, and contributors; **Microsoft Visual Studio / Windows SDK / PowerShell** — build and Windows platform tools. These products are not redistributed as part of the release.
 - **Free Software Foundation** — GNU GPL version 3 license text. The combined project is distributed under GPL-3.0.
+
+## Qt browser integration references
+
+The independently written browser hook follows Qt's documented proxy interface and the behavior of [Qt WebEngine's ProxyConfigServiceQt](https://github.com/qt/qtwebengine/blob/dev/src/core/net/proxy_config_service_qt.cpp). Credit to **The Qt Company and Qt contributors** for Qt Network/WebEngine and its documentation: [proxy support](https://doc.qt.io/qt-6/qtwebengine-overview.html#proxy-support), [QNetworkProxy](https://doc.qt.io/qt-6/qnetworkproxy.html), and [QNetworkProxyFactory](https://doc.qt.io/qt-6/qnetworkproxyfactory.html). No Qt library or Qt implementation source is redistributed here.
 
 ## Ecosystem acknowledgments
 

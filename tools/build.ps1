@@ -21,4 +21,4 @@ if (!$InstallerOnly) {
 if (!(Test-Path $InnoCompiler)) { throw 'Pass -InnoCompiler with the path to ISCC.exe.' }
 & $InnoCompiler "$root\installer\SignalRGBProxy.iss"
 if ($LASTEXITCODE) { throw 'Installer compilation failed.' }
-Get-FileHash "$root\release\SignalRGBProxyInstaller-v0.1-win-x64.exe" -Algorithm SHA256
+Get-FileHash "$root\release\SignalRGBProxyInstaller-v0.1.1-win-x64.exe" -Algorithm SHA256

@@ -1,4 +1,4 @@
-SignalRGB Proxy Integration v0.1
+SignalRGB Proxy Integration v0.1.1
 
 Original open-source work:
   runetfreedom/force-proxy — runetfreedom, m0nstrum, and contributors.
