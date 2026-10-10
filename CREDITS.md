@@ -22,7 +22,7 @@ SignalRGB-specific changes include a loader without Discord command-line/update 
 - **[curl / libcurl](https://curl.se/)**, **Daniel Stenberg**, and the curl contributors — DoH HTTPS transport; curl license in `licenses/dependencies/curl.txt`.
 - **[zlib](https://zlib.net/)**, **Jean-loup Gailly**, **Mark Adler**, and contributors — libcurl dependency; license in `licenses/dependencies/zlib.txt`.
 - **[vcpkg](https://github.com/microsoft/vcpkg)**, Microsoft, and contributors — dependency builds; retained vcpkg helper notices in `licenses/dependencies/`.
-- **[Inno Setup](https://jrsoftware.org/)**, **Jordan Russell**, **Martijn Laan**, and contributors — executable installer and uninstaller; its distribution license is included in `licenses/dependencies/inno-setup.txt`.
+- **[Inno Setup](https://jrsoftware.org/)**, **Jordan Russell**, **Martijn Laan**, **Alex Yackimoff** (preprocessor), and contributors — executable installer and uninstaller; its distribution license is included in `licenses/dependencies/inno-setup.txt`. Thanks also to **Igor Pavlov** and the 7-Zip/LZMA contributors for the compression technology used by Inno Setup.
 - **[CMake](https://cmake.org/)**, Kitware, and contributors; **Microsoft Visual Studio / Windows SDK / PowerShell** — build and Windows platform tools. These products are not redistributed as part of the release.
 - **Free Software Foundation** — GNU GPL version 3 license text. The combined project is distributed under GPL-3.0.
 

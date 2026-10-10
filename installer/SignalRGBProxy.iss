@@ -9,7 +9,7 @@ AppPublisher=pxlfall and upstream contributors
 AppPublisherURL={#ProjectURL}
 AppSupportURL={#ProjectURL}/issues
 AppUpdatesURL={#ProjectURL}/releases
-DefaultDirName={localappdata}\Programs\SignalRGBProxy
+DefaultDirName={autopf}\SignalRGBProxy
 DisableProgramGroupPage=yes
 PrivilegesRequired=admin
 ArchitecturesAllowed=x64compatible
@@ -34,6 +34,8 @@ Source: "..\Start.cmd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Install.cmd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Uninstall.cmd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\BUILD.md"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\CREDITS.md"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\CREDITS.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion

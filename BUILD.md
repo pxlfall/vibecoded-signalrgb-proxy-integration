@@ -20,7 +20,7 @@ To compile the installer only from an already built payload:
 .\tools\build.ps1 -InstallerOnly -InnoCompiler 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
 ```
 
-No SignalRGB binaries, proxy credentials, or personal test logs are required for the source build. The release installer embeds the DLLs, scripts, docs, credits, and license notices. It requires administrator privileges to modify an installation that may be running elevated, but its default package directory is within the current user's local app data.
+No SignalRGB binaries, proxy credentials, or personal test logs are required for the source build. The release installer embeds the DLLs, scripts, docs, credits, and license notices. It requires administrator privileges to modify an installation that may be running elevated. The default package directory is Program Files; SignalRGB itself remains in the selected VortxEngine folder.
 
 The DLL transport probe is built as `build\Release\SignalProxyTransportProbe.exe`. See `tests/transport_probe.cpp`. Run it with a local SOCKS test listener on port 17997; the test deliberately expects split greeting/CONNECT frames and PING/PONG payloads. `tools/test-transport.ps1` supplies that listener.
 

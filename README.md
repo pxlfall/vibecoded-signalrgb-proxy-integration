@@ -13,7 +13,7 @@ Implemented and debugged with OpenAI Codex assistance, with project direction an
 
 This release contains x64 DLLs. It was tested with SignalRGB 2.5.78 on Windows 11 ARM in Parallels running the x64 application under emulation. Native ARM64 SignalRGB binaries are unsupported. The installer is unsigned.
 
-Setup defaults to `%LOCALAPPDATA%\Programs\SignalRGBProxy`. `proxy.txt` in that folder is the configuration source; the wrapper copies it into SignalRGB on each launch. If you change settings, quit SignalRGB and launch the wrapper again.
+Setup defaults to `C:\Program Files\SignalRGBProxy`. `proxy.txt` in that folder is the configuration source; the wrapper copies it into SignalRGB on each launch. If you change settings, edit the file as administrator, quit SignalRGB, and launch the wrapper again.
 
 ## Your existing elevated startup task
 
@@ -22,7 +22,7 @@ The installer writes **task-action.txt** in its installation folder with the exa
 Use `powershell.exe` with arguments (replace the path with your chosen installer folder):
 
 ```text
--NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\Users\YOUR_USER\AppData\Local\Programs\SignalRGBProxy\SignalRGBProxy.ps1" -Action Start
+-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\Program Files\SignalRGBProxy\SignalRGBProxy.ps1" -Action Start
 ```
 
 You can remove the fixed 30-second delay. The wrapper waits up to 90 seconds for a successful local SOCKS5 handshake, then launches the official `SignalRgbLauncher.exe` with the task's privileges. Add `-WaitSeconds 180` to allow longer. Listener readiness does not guarantee upstream internet connectivity.

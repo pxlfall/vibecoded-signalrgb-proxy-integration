@@ -10,7 +10,8 @@ SignalRGB integration and testing: pxlfall, with OpenAI Codex assistance.
 
 Dependencies: Microsoft Detours; curl/libcurl (Daniel Stenberg and
 contributors); zlib (Jean-loup Gailly, Mark Adler, and contributors).
-Installer: Inno Setup, Jordan Russell, Martijn Laan, and contributors.
+Installer: Inno Setup, Jordan Russell, Martijn Laan, Alex Yackimoff,
+and contributors. Compression: Igor Pavlov and 7-Zip/LZMA contributors.
 Build tools: vcpkg, CMake/Kitware, Microsoft Visual Studio and Windows SDK.
 License: GNU GPL v3, Free Software Foundation.
 

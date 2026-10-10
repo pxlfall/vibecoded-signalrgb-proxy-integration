@@ -14,6 +14,10 @@ A local fake SOCKS server sent greetings, domain-address CONNECT replies, and ap
 
 The PowerShell management script was tested for backup/restoration of an original DLL, removal of newly added patch files, reinstall, and refusal to launch when SOCKS5 was unavailable. An elevated interactive scheduled task returned 0 and SignalRGB recorded Admin Status: True. The temporary task was removed after testing.
 
+## Executable installer
+
+Inno Setup 6.7.3 compiled the installer. Isolated install/uninstall tests verified the embedded payload hashes, a custom SignalRGB root containing Unicode characters, the selected proxy port, generation of the exact task action, refusal to launch when SOCKS5 was absent, restoration of an existing original DLL, removal of newly added files, and successful reinstall/uninstall. The fixture contained dummy application files; those checks do not establish physical hardware behavior.
+
 ## Coverage
 
 Some public IPv6 traffic remained direct. UDP, dedicated IPv6-only sockets to an IPv4 proxy, unhooked networking APIs, and separate service processes are not completely covered. Authentication, automatic update survival, physical-PC behavior, and long-term stability are unverified. VM GPU/audio/driver warnings remain.
