@@ -1,0 +1,28 @@
+SignalRGB Proxy Integration v0.1
+
+Original open-source work:
+  runetfreedom/force-proxy — runetfreedom, m0nstrum, and contributors.
+  runetfreedom/discord-voice-proxy — runetfreedom, Behnam Banaei
+  (behnawwm), and contributors. DWrite forwarding/loader approach.
+  pxlfall/vibecoded-discord-voice-proxy — earlier DNS-over-HTTPS adaptation.
+
+SignalRGB integration and testing: pxlfall, with OpenAI Codex assistance.
+
+Dependencies: Microsoft Detours; curl/libcurl (Daniel Stenberg and
+contributors); zlib (Jean-loup Gailly, Mark Adler, and contributors).
+Installer: Inno Setup, Jordan Russell, Martijn Laan, and contributors.
+Build tools: vcpkg, CMake/Kitware, Microsoft Visual Studio and Windows SDK.
+License: GNU GPL v3, Free Software Foundation.
+
+Thanks to SignalRGB/Whirlwind FX, Qt/Chromium, Clash Verge Rev,
+Mihomo/MetaCubeX, and Cloudflare for the surrounding ecosystem.
+This project is unaffiliated with these projects and companies.
+
+Full credits, source links, provenance, and dependency license notices
+are included in CREDITS.md, LICENSE, and the licenses folder.
+
+This is a personal experimental adaptation. It is not a full-traffic
+firewall or an official SignalRGB/Clash product. See README.md for
+tested behavior and coverage limits.
+
+https://github.com/pxlfall/vibecoded-signalrgb-proxy-integration

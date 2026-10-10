@@ -1,0 +1,11 @@
+/build*/
+/payload/
+/release/
+/evidence/
+/installer-build/
+/vcpkg_installed/
+signal-installation.txt
+*.log
+*.exe
+*.dll
+.DS_Store
